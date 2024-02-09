@@ -38,7 +38,7 @@ prompts:
 
 environment:
   env_type: pokemon
-  max_turns: 10000000
+  max_turns: 100
   locations:
     - name: Pokémon Center
       # description: The Pokémon Center is a place where you can get your Pokémon healed. A Pokémon Center is completely free of charge and is found in most major cities.

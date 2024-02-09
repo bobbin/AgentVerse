@@ -20,10 +20,13 @@ except ImportError:
     is_openai_available = False
     logging.warning("openai package is not installed")
 else:
-    openai.api_key = os.environ.get("OPENAI_API_KEY")
+    #openai.api_key = os.environ.get("OPENAI_API_KEY")
     openai.proxy = os.environ.get("http_proxy")
+    openaiBaseURL = 'http://localhost:5656/v1'
     if openai.proxy is None:
         openai.proxy = os.environ.get("HTTP_PROXY")
+    if openaiBaseURL is not None:
+            openai.base_url = openaiBaseURL
     if openai.api_key is None:
         logging.warning(
             "OpenAI API key is not set. Please set the environment variable OPENAI_API_KEY"
@@ -73,6 +76,8 @@ class OpenAICompletion(BaseCompletionModel):
         )
 
     async def agenerate_response(self, prompt: str) -> LLMResult:
+        print("prompt: ", prompt)
+        openai.api_base = openaiBaseURL
         response = await openai.Completion.acreate(prompt=prompt, **self.args.dict())
         return LLMResult(
             content=response["choices"][0]["text"],
@@ -102,6 +107,7 @@ class OpenAIChat(BaseChatModel):
 
     def generate_response(self, prompt: str) -> LLMResult:
         messages = self._construct_messages(prompt)
+        print("prompt: ", prompt)
         try:
             response = openai.ChatCompletion.create(
                 messages=messages, **self.args.dict()
@@ -117,7 +123,10 @@ class OpenAIChat(BaseChatModel):
 
     async def agenerate_response(self, prompt: str) -> LLMResult:
         messages = self._construct_messages(prompt)
+        print("prompt: ", prompt)
+
         try:
+            openai.api_base = openaiBaseURL
             response = await openai.ChatCompletion.acreate(
                 messages=messages, **self.args.dict()
             )

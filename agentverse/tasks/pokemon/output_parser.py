@@ -19,8 +19,9 @@ class PokemonParser(OutputParser):
         cleaned_output = text.strip()
         cleaned_output = re.sub(r"\n+", "\n", cleaned_output)
         cleaned_output = cleaned_output.split("\n")
+        print("cleaned_output: ", cleaned_output)
         if not (
-            len(cleaned_output) == 3
+            len(cleaned_output) >= 3
             and cleaned_output[0].startswith("Thought:")
             and cleaned_output[1].startswith("Action:")
             and cleaned_output[2].startswith("Action Input:")

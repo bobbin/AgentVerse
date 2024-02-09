@@ -26,7 +26,9 @@ class ConversationAgent(BaseAgent):
                 raise
             except Exception as e:
                 logging.error(e)
-                logging.warning("Retrying...")
+                logging.warning("Retrying P...")
+                # Añadir texto a prompt
+                prompt = prompt + " " + "Your last message was not understood. Please try again. Remember to always output the following format: Thought: (your thought here) Action: (an action name, can be Speak, MoveTo, or other actions) Action Input: (the arguments for the action in json format, and NOTHING else)"
                 continue
 
         if parsed_response is None:
@@ -56,6 +58,8 @@ class ConversationAgent(BaseAgent):
             except Exception as e:
                 logging.error(e)
                 logging.warning("Retrying...")
+                prompt = prompt + " " + "Your last message was not understood. Please try again. Remember to always output the following format: Thought: (your thought here) Action: (an action name, can be Speak, MoveTo, or other actions) Action Input: (the arguments for the action in json format, and NOTHING else)"
+
                 continue
 
         if parsed_response is None:
