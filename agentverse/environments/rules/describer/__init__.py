@@ -7,3 +7,4 @@ from .basic import BasicDescriber
 from .classroom import ClassroomDescriber
 from .pokemon import PokemonDescriber
 from .prisoner import PrisonerDescriber
+from .murdervillage import MurderVillageDescriber

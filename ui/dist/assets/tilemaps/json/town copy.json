@@ -240,7 +240,7 @@
                 {
                  "height":40.6666666666666,
                  "id":21,
-                 "name":"Weapon Store",
+                 "name":"Bike Store",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -251,7 +251,7 @@
                 {
                  "height":23.3333333333333,
                  "id":22,
-                 "name":"Police Station",
+                 "name":"Pok\u00e9mon Center",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -262,7 +262,7 @@
                 {
                  "height":28,
                  "id":23,
-                 "name":"Gym",
+                 "name":"Pok\u00e9mon Gym",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -273,7 +273,7 @@
                 {
                  "height":26.6666666666667,
                  "id":24,
-                 "name":"Mall",
+                 "name":"Shop",
                  "rotation":0,
                  "type":"",
                  "visible":true,

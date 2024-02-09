@@ -22,7 +22,7 @@ class MathProblem2PlayersToolsParser(OutputParser):
             cleaned_output[0].startswith("ACTION:")
             and cleaned_output[1].startswith("ACTION INPUT:")
         ):
-            print(text)
+            #print(text)
             raise OutputParserError("Output Format Error")
         action = cleaned_output[0][len("ACTION:") :].strip()
         action_input = cleaned_output[1][len("ACTION INPUT:") :].strip()

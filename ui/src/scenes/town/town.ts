@@ -386,16 +386,21 @@ export class TownScene extends Scene {
         timer.destroy();
         waitingBox.destroy();
         var content = JSON.parse(data.content);
-        var responseBox = this.createTextBox()
-          .start(content.text, 25)
-          .on("complete", () => {
-            this.enableKeyboard();
-            this.input.keyboard.on("keydown", () => {
-              responseBox.destroy();
-              this.input.keyboard.off("keydown");
-              (npc as NPC).setTalking(false);
+        if(content.text != "" || content.test != undefined) {
+          var responseBox = this.createTextBox()
+            .start(content.text, 25)
+            .on("complete", () => {
+              this.enableKeyboard();
+              this.input.keyboard.on("keydown", () => {
+                responseBox.destroy();
+                this.input.keyboard.off("keydown");
+                (npc as NPC).setTalking(false);
+              });
             });
-          });
+        } else {
+          this.enableKeyboard();
+          (npc as NPC).setTalking(false);
+        }
       });
     });
   }
@@ -446,6 +451,7 @@ export class TownScene extends Scene {
   }
 
   getRandomTileAtLocation(location_name: string): TileXYType {
+    console.log(this.map);
     var location = this.map.findObject("location", function (object) {
       return object.name == location_name;
     });

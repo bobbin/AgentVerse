@@ -76,7 +76,7 @@ class OpenAICompletion(BaseCompletionModel):
         )
 
     async def agenerate_response(self, prompt: str) -> LLMResult:
-        print("prompt: ", prompt)
+        #print("prompt: ", prompt)
         openai.api_base = openaiBaseURL
         response = await openai.Completion.acreate(prompt=prompt, **self.args.dict())
         return LLMResult(
@@ -107,7 +107,7 @@ class OpenAIChat(BaseChatModel):
 
     def generate_response(self, prompt: str) -> LLMResult:
         messages = self._construct_messages(prompt)
-        print("prompt: ", prompt)
+        #print("prompt: ", prompt)
         try:
             response = openai.ChatCompletion.create(
                 messages=messages, **self.args.dict()
@@ -123,7 +123,7 @@ class OpenAIChat(BaseChatModel):
 
     async def agenerate_response(self, prompt: str) -> LLMResult:
         messages = self._construct_messages(prompt)
-        print("prompt: ", prompt)
+        #print("prompt: ", prompt)
 
         try:
             openai.api_base = openaiBaseURL
@@ -145,9 +145,12 @@ def get_embedding(text: str, attempts=3) -> np.array:
     while attempt < attempts:
         try:
             text = text.replace("\n", " ")
+            openai.api_base = "http://localhost:8080"
             embedding = openai.Embedding.create(
-                input=[text], model="text-embedding-ada-002"
+                #input=[text], model="text-embedding-ada-002"
+                input=[text], model="bert-cpp-minilm-v6"
             )["data"][0]["embedding"]
+            openai.api_base = openaiBaseURL
             return tuple(embedding)
         except Exception as e:
             attempt += 1

@@ -13,6 +13,8 @@ from .db_diag.output_parser import DBDiag
 from .prisoner_dilemma.output_parser import PrisonerDilemmaParser
 
 from .pokemon.output_parser import PokemonParser
+from .murdervillage.output_parser import MurderVillageParser
+
 from .sde_team.sde_team_3players.output_parser import SdeTeamParser
 from .sde_team.sde_team_2players.output_parser import SdeTeamGivenTestsParser
 

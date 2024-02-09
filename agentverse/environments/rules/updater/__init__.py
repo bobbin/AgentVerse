@@ -8,3 +8,4 @@ from .classroom import ClassroomUpdater
 from .sde_team import SdeTeamUpdater
 
 from .pokemon import PokemonUpdater
+from .murdervillage import MurderVillageUpdater

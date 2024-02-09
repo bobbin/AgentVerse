@@ -11,3 +11,5 @@ from .oneself import OneselfVisibility
 from .prisoner import PrisonerVisibility
 from .sde_team import SdeTeamVisibility
 from .pokemon import PokemonVisibility
+from .murdervillage import MurderVillageVisibility
+
